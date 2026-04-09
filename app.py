@@ -9,14 +9,6 @@ from helpers import apology, login_required, lookup, usd
 
 
     cash = db.execute(
-        "SELECT cash FROM users WHERE id = :user_id", user_id = session["user_id"]
-    )[0]["cash"]
-
-    # total value
-    total_value = cash
-    grand_total = cash
-
-    # find total values
     for stock in stocks:
         quote = lookup(stock["symbol"])
         stock["name"] = quote["name"]
