@@ -7,16 +7,6 @@ from werkzeug.security import check_password_hash, generate_password_hash
 
 from helpers import apology, login_required, lookup, usd
 
-
-  
-    return render_template("index.html", stocks = stocks, cash = usd(cash), total_value = usd(total_value), grand_total = grand_total)
-
-
-@app.route("/buy", methods=["GET", "POST"])
-@login_required
-def buy():
-    """Buy shares of stock"""
-    if request.method == "POST":
         symbol = request.form.get("symbol").upper()
         shares = request.form.get("shares")
         if not symbol:
