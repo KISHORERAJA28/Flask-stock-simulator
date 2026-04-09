@@ -12,19 +12,6 @@ app = Flask(__name__)
 
 
 @app.after_request
-def after_request(response):
-    """Ensure responses aren't cached"""
-    response.headers["Cache-Control"] = "no-cache, no-store, must-revalidate"
-    response.headers["Expires"] = 0
-    response.headers["Pragma"] = "no-cache"
-    return response
-
-
-@app.route("/")
-@login_required
-def index():
-    """Show portfolio of stocks"""
-    # get user's stocks and shares
     stocks = db.execute(
         "SELECT symbol, SUM(shares) as total_shares FROM transactions WHERE user_id = :user_id GROUP BY symbol HAVING total_shares > 0",
         user_id = session["user_id"]
