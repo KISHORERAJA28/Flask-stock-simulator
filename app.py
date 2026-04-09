@@ -15,13 +15,7 @@ from helpers import apology, login_required, lookup, usd
             return apology("Must be a positive number of shares")
 
         quote = lookup(symbol)
-        if quote is None:
-            return apology("Symbol not found")
-
-        price = quote["price"]
-        total_cost = int(shares) * price
-        cash = db.execute("SELECT cash FROM users WHERE id = :user_id", user_id = session["user_id"])[0]["cash"]
-
+      
         if cash < total_cost:
             return apology("You don't have enough cash")
 
