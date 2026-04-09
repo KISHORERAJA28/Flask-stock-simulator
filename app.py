@@ -1,25 +1,4 @@
-import os
 
-from cs50 import SQL
-from flask import Flask, flash, redirect, render_template, request, session
-from flask_session import Session
-from werkzeug.security import check_password_hash, generate_password_hash
-
-from helpers import apology, login_required, lookup, usd
-
-        symbol = request.form.get("symbol").upper()
-        shares = request.form.get("shares")
-        if not symbol:
-            return apology("Sybol is required")
-
-        # update history
-        db.execute(
-            "INSERT INTO transactions (user_id, symbol, shares, price) VALUES (:user_id, :symbol, :shares, :price)",
-            user_id = session["user_id"],
-            symbol = symbol,
-            shares = shares,
-            price = price
-        )
 
         flash(f"Bought {shares} shares of {symbol} costing {usd(total_cost)}!")
         return redirect("/")
