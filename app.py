@@ -11,19 +11,6 @@ from helpers import apology, login_required, lookup, usd
         shares = request.form.get("shares")
         if not symbol:
             return apology("Sybol is required")
-        elif not shares or not shares.isdigit() or int(shares) <= 0:
-            return apology("Must be a positive number of shares")
-
-        quote = lookup(symbol)
-      
-        if cash < total_cost:
-            return apology("You don't have enough cash")
-
-        db.execute(
-            "UPDATE users SET cash = cash - :total_cost WHERE id = :user_id",
-            total_cost = total_cost,
-            user_id = session["user_id"]
-        )
 
         # update history
         db.execute(
