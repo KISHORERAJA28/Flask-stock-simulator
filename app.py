@@ -8,15 +8,7 @@ from werkzeug.security import check_password_hash, generate_password_hash
 from helpers import apology, login_required, lookup, usd
 
 
-    cash = db.execute(
-    for stock in stocks:
-        quote = lookup(stock["symbol"])
-        stock["name"] = quote["name"]
-        stock["price"] = quote["price"]
-        stock["value"] = quote["price"] * stock["total_shares"]
-        total_value += stock["value"]
-        grand_total += stock["value"]
-
+  
     return render_template("index.html", stocks = stocks, cash = usd(cash), total_value = usd(total_value), grand_total = grand_total)
 
 
