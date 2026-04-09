@@ -261,18 +261,3 @@ def sell():
                         user_id = session["user_id"]
                     )
 
-                    # update history
-                    db.execute(
-                        "INSERT INTO transactions (user_id, symbol, shares, price) VALUES (:user_id, :symbol, :shares, :price)",
-                        user_id = session["user_id"],
-                        symbol = symbol,
-                        shares = -shares,
-                        price = price
-                    )
-
-                    flash(f"Sold {shares} shares of {symbol} for {usd(total_sale)}!")
-                    return redirect("/")
-
-        return apology("Symbol not found")
-    else:
-        return render_template("sell.html", stocks = stocks)
